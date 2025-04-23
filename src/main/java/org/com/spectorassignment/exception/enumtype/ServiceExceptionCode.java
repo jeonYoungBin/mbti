@@ -14,7 +14,8 @@ public enum ServiceExceptionCode implements ErrorCode {
     NOT_MATCH_PASSWORD(HttpStatus.BAD_REQUEST,"NOT_MATCH_PASSWORD", "비밀번호가 잘못되었습니다."),
     INVALID_ROLE_TYPE(HttpStatus.BAD_REQUEST, "INVALID_ROLE_TYPE", "manager와 user외에는 들어갈수가 없습니다."),
     BAD_REQUEST_BODY(HttpStatus.BAD_REQUEST, "BAD_REQUEST_BODY", "유효성검사에 실패하였습니다."),
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR","서버 에러입니다");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR","서버 에러입니다"),
+    ACCESS_DENIED(HttpStatus.FORBIDDEN, "ACCESS_DENIED","USER만 이용할수 있습니다");
 
     private final HttpStatus status;
     private final String code;

@@ -1,5 +1,6 @@
 package org.com.spectorassignment.exception.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.com.spectorassignment.domain.response.ErrorResponse;
 import org.com.spectorassignment.exception.CustomException;
 import org.com.spectorassignment.exception.ErrorCode;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+@Slf4j
 @RestControllerAdvice
 public class ExceptionAdvisorController {
 
@@ -31,6 +32,7 @@ public class ExceptionAdvisorController {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception e) {
+        log.warn("일반 예외 발생: {}", e.getClass().getName(), e);
         ServiceExceptionCode errorCode = ServiceExceptionCode.INTERNAL_SERVER_ERROR;
 
         ErrorResponse errorResponse = ErrorResponse.builder()

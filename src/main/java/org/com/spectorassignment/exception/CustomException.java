@@ -1,6 +1,6 @@
 package org.com.spectorassignment.exception;
 
-public class CustomException extends Exception{
+public class CustomException extends RuntimeException{
     private final ErrorCode errorCode;
     private final String formattedMessage;
 

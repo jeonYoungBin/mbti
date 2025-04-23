@@ -20,7 +20,7 @@ public class MemberService {
 
     public Long signUp(SignupRequest request) throws CustomException {
         if(memberRepository.existsByEmail(request.email())) {
-            throw new CustomException(ServiceExceptionCode.ALREADY_EXIST_MEMBER);
+            throw new CustomException(ServiceExceptionCode.ALREADY_EXIST_MEMBER, request.email());
         }
 
         Member saveMember = Member.builder()
