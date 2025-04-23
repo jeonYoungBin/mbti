@@ -1,0 +1,28 @@
+package org.com.spectorassignment.exception.enumtype;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.com.spectorassignment.exception.ErrorCode;
+import org.springframework.http.HttpStatus;
+
+@Getter
+@AllArgsConstructor
+public enum ServiceExceptionCode implements ErrorCode {
+
+    ALREADY_EXIST_MEMBER(HttpStatus.BAD_REQUEST,"ALREADY_EXIST_MEMBER", "이미 가입된 이메일 입니다. email : [%s]"),
+    NOT_REGISTRATION_MEMBER(HttpStatus.BAD_REQUEST,"NOT_REGISTRATION_MEMBER", "이미 가입된 이메일이 없습니다. email : [%s]"),
+    NOT_MATCH_PASSWORD(HttpStatus.BAD_REQUEST,"NOT_MATCH_PASSWORD", "비밀번호가 잘못되었습니다."),
+    INVALID_ROLE_TYPE(HttpStatus.BAD_REQUEST, "INVALID_ROLE_TYPE", "manager와 user외에는 들어갈수가 없습니다."),
+    BAD_REQUEST_BODY(HttpStatus.BAD_REQUEST, "BAD_REQUEST_BODY", "유효성검사에 실패하였습니다."),
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR","서버 에러입니다");
+
+    private final HttpStatus status;
+    private final String code;
+    private final String message;
+
+    @Override
+    public String getCode() {
+        return this.code;
+    }
+
+}
