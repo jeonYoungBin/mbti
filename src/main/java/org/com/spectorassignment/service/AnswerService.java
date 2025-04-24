@@ -11,6 +11,7 @@ import org.com.spectorassignment.repository.AnswerRepository;
 import org.com.spectorassignment.repository.MemberRepository;
 import org.com.spectorassignment.repository.QuestionRepository;
 import org.com.spectorassignment.util.EncryptionUtil;
+import org.com.spectorassignment.util.JwtTokenUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -60,8 +61,13 @@ public class AnswerService {
     }
 
     public List<AnswerResponse> findByAllAnswer(Long memberId) {
-        return answerRepository.findAllByAnswerId_MemberId(memberId)
-                .stream().map(AnswerResponse::from).collect(Collectors.toList());
+        return answerRepository.findAnswersByMemberId(memberId).stream()
+                .map(a -> new AnswerResponse(
+                        a.memberId(),
+                        a.question(),
+                        EncryptionUtil.decrypt(a.answer())
+                ))
+                .toList();
     }
 
     private Answer createEncryptedAnswer(Member member, Question question, String answer) {

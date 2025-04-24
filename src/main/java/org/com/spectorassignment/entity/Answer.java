@@ -22,6 +22,11 @@ public class Answer {
     @EmbeddedId
     private AnswerId answerId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("questionId")
+    @JoinColumn(name = "question_id")
+    private Question question;
+
     private String answer;
 
     @CreatedDate
