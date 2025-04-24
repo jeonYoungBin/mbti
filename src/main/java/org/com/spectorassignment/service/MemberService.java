@@ -10,6 +10,7 @@ import org.com.spectorassignment.repository.MemberRepository;
 import org.com.spectorassignment.util.JwtTokenUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
 
+    @Transactional
     public Long signUp(SignupRequest request) throws CustomException {
         if(memberRepository.existsByEmail(request.email())) {
             throw new CustomException(ServiceExceptionCode.ALREADY_EXIST_MEMBER, request.email());
@@ -36,7 +38,7 @@ public class MemberService {
 
     public String login(LoginRequest request) throws CustomException {
         Member findMember = memberRepository.findByEmail(request.email())
-                .orElseThrow(() -> new CustomException(ServiceExceptionCode.NOT_REGISTRATION_MEMBER));
+                .orElseThrow(() -> new CustomException(ServiceExceptionCode.NOT_REGISTRATION_MEMBER, request.email()));
 
         if (!passwordEncoder.matches(request.password(), findMember.getPassword())) {
             throw new CustomException(ServiceExceptionCode.NOT_MATCH_PASSWORD);
