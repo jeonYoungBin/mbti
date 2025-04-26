@@ -27,4 +27,8 @@ public class Question {
 
     @Enumerated(EnumType.STRING)
     QuestionType type;
+
+    public void updateQuestion(String question) {
+        this.question = question;
+    }
 }

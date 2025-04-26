@@ -1,8 +1,10 @@
 package org.com.spectorassignment.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.com.spectorassignment.domain.request.CompleteAnswerRequest;
+import org.com.spectorassignment.domain.request.UpdateQuestionRequest;
 import org.com.spectorassignment.domain.response.QuestionResponse;
 import org.com.spectorassignment.exception.CustomException;
 import org.com.spectorassignment.service.AnswerService;
@@ -22,13 +24,23 @@ public class MbtiController {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
+    @Operation(summary = "MBTI 질문 조회", description = "MBTI 질문 조회 하는 API 입니다. USER만 접근 가능합니다.")
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/questions")
     public ResponseEntity<?> findQuestions() throws CustomException {
-        List<QuestionResponse> questions = questionService.getAllQuestions();
+        List<QuestionResponse> questions = questionService.findAllQuestions();
         return ResponseEntity.ok(questions);
     }
 
+    @Operation(summary = "MBTI 질문 변경", description = "MBTI 질문 변경 하는 API 입니다. USER만 접근 가능합니다.")
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/questions/{questionId}")
+    public ResponseEntity<?> updateQuestion(@PathVariable Long questionId, @RequestBody @Valid UpdateQuestionRequest request) throws CustomException {
+        questionService.updateQuestion(questionId, request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "MBTI 질문 답변 API", description = "MBTI 질문 답변 API 하는 API 입니다. USER만 접근 가능합니다.")
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/complete")
     public ResponseEntity<?> saveMbtiQuestion(Authentication authentication,
@@ -38,6 +50,7 @@ public class MbtiController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Operation(summary = "회원 MBTI 질문 답변 조회 API", description = "회원 MBTI 질문 답변 조회 하는 API 입니다. MANAGER만 접근 가능합니다.")
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{userId}")
     public ResponseEntity<?> findMbtiAnswers(@PathVariable(name = "userId") Long memberId) {

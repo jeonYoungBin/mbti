@@ -27,6 +27,11 @@ public class Answer {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("memberId")
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     private String answer;
 
     @CreatedDate

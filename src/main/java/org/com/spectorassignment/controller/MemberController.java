@@ -1,5 +1,6 @@
 package org.com.spectorassignment.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.com.spectorassignment.domain.request.LoginRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
     private final MemberService memberService;
 
+    @Operation(summary = "회원 가입", description = "회원 가입 하는 API 입니다.")
     @PostMapping("/signup")
     public ResponseEntity<SignupResponse> addMember(@RequestBody @Valid SignupRequest request) throws CustomException {
 
@@ -33,6 +35,7 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).body(signupResponse);
     }
 
+    @Operation(summary = "로그인", description = "로그인 하는 API 입니다.")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) throws CustomException {;
         LoginResponse loginResponse = LoginResponse.builder().token(memberService.login(request)).build();

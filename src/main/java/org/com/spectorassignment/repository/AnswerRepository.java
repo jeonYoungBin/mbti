@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.List;
 
 public interface AnswerRepository extends JpaRepository<Answer, AnswerId> {
-    List<Answer> findAllByAnswerId_MemberId(Long memberId);
     List<Answer> findAllByAnswerIdIn(Collection<AnswerId> answerIds);
     @Query("""
         SELECT new org.com.spectorassignment.domain.response.AnswerResponse(

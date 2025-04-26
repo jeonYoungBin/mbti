@@ -55,11 +55,11 @@ public class JwtTokenUtil {
             Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)))
                     .build()
-                    .parseClaimsJws(token); // 유효성 체크 (만료, 서명 등)
+                    .parseClaimsJws(token);
 
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            return false;
+            throw e;
         }
     }
 }
