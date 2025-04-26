@@ -74,6 +74,7 @@ public class AnswerService {
         validateAnswerFormat(question, answer);
         return Answer.builder()
                 .answerId(new AnswerId(member.getId(), question.getId()))
+                .member(member)
                 .question(question)
                 .answer(EncryptionUtil.encrypt(answer))
                 .build();
