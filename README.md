@@ -40,8 +40,11 @@
    1)  H2 DB는 1.4.200 버전으로 설치
       - url : jdbc:h2:tcp://localhost/~/test
    2) 최초 실행시
-     - application.yml -> ddl-auto: create 설정.
-   3) 테스트 시나리오
+     - application.yml -> ddl-auto: create 설정
+   3) 환경 변수 설정
+     - JWTSECRET=
+        
+   4) 테스트 시나리오
       ##### 회원 가입
       
       ###### request
