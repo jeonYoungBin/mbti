@@ -21,7 +21,7 @@
 - controller: 클라이언트 요청을 받고 응답을 처리합니다.
 - service: 비즈니스 로직을 담당하며 트랜잭션 단위로 처리됩니다.
 - repository: Spring Data JPA 기반으로 DB에 접근합니다.
-- domain : 모든 response dto 및 enum 타입을 정의 했습니다.
+- domain : request, response dto를 정의 했습니다.
 - entity : 각 테이블의 ORM을 정의 했습니다.
 - exception : 예러 발생시 RestControllerAdvice를 활용하여 Exception Handling 합니다.
 - initDb : 서비스가 올라가고 디비에 초기값을 넣어 줍니다.
