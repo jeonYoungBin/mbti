@@ -17,7 +17,7 @@ public enum ServiceExceptionCode implements ErrorCode {
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR","서버 에러입니다"),
     ACCESS_DENIED(HttpStatus.FORBIDDEN, "ACCESS_DENIED","접근 권한이 없습니다."),
     ANSWER_YES_NO(HttpStatus.BAD_REQUEST, "ANSWER_YES_NO","이 질문은 YES/NO로만 답할수 있습니다."),
-    ANSWER_ALREADY_EXISTS(HttpStatus.CONFLICT, "ANSWER_ALREADY_EXISTS", "이미 응답한 질문입니다. %s"),
+    ANSWER_ALREADY_EXISTS(HttpStatus.CONFLICT, "ANSWER_ALREADY_EXISTS", "이미 응답한 질문입니다."),
     INVALID_JWT(HttpStatus.UNAUTHORIZED, "INVALID_JWT", "유효하지 않은 토큰입니다."),
     EXPIRED_JWT(HttpStatus.UNAUTHORIZED, "EXPIRED_JWT", "토큰이 만료되었습니다."),
     NOT_FOUND_QUESTION(HttpStatus.NOT_FOUND, "NOT_FOUND_QUESTION", "유효하지 않은 토큰입니다."),

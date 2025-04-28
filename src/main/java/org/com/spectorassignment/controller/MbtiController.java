@@ -34,8 +34,9 @@ public class MbtiController {
 
     @Operation(summary = "MBTI 질문 변경", description = "MBTI 질문 변경 하는 API 입니다. USER만 접근 가능합니다.")
     @PreAuthorize("hasRole('USER')")
-    @GetMapping("/questions/{questionId}")
-    public ResponseEntity<?> updateQuestion(@PathVariable Long questionId, @RequestBody @Valid UpdateQuestionRequest request) throws CustomException {
+    @PatchMapping("/questions/{questionId}")
+    public ResponseEntity<?> updateQuestion(@PathVariable Long questionId,
+                                            @RequestBody @Valid UpdateQuestionRequest request) throws CustomException {
         questionService.updateQuestion(questionId, request);
         return ResponseEntity.noContent().build();
     }

@@ -23,4 +23,6 @@ public interface AnswerRepository extends JpaRepository<Answer, AnswerId> {
         WHERE a.answerId.memberId = :memberId
     """)
     List<AnswerResponse> findAnswersByMemberId(@Param("memberId") Long memberId);
+
+    List<Answer> findAllByAnswerId_QuestionId(Long questionId);
 }
