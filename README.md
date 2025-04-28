@@ -1,7 +1,7 @@
 ### ERD 설계
    - member(회원),question(질문),answer(답변) 테이블로 설계를 하였으며, answer 테이블은 각각 1 : N 구조로 가져갔습니다.
      
-   ![스크린샷 2025-04-26 오후 12 10 41](https://github.com/user-attachments/assets/c7c760c8-865c-47c7-9d5b-cd73c9358009)
+   ![스크린샷 2025-04-28 오후 10 26 36](https://github.com/user-attachments/assets/9e1558f9-8c70-44c7-8053-93f48e31fac3)
 
 
 
@@ -13,8 +13,74 @@
 
 ### 디렉토리/패키지 구조
 
-
-
+```text
+├── HELP.md
+├── README.md
+├── build
+│   ├── classes
+│   │   └── java
+│   │       ├── main
+│   │       │   └── org
+│   │       │       └── com
+│   │       │           └── mbti
+│   │       │               ├── SpectorAssignmentApplication.class
+│   │       │               ├── config
+│   │       │               │   ├── SwaggerConfig.class
+│   │       │               │   └── security
+│   │       │               │       ├── JwtAuthFilter.class
+│   │       │               │       └── SecurityConfig.class
+│   │       │               ├── controller
+│   │       │               │   ├── MbtiController.class
+│   │       │               │   └── MemberController.class
+│   │       │               ├── domain
+│   │       │               │   ├── request
+│   │       │               │   │   ├── AnswerRequest.class
+│   │       │               │   │   ├── CompleteAnswerRequest.class
+│   │       │               │   │   ├── LoginRequest.class
+│   │       │               │   │   ├── SignupRequest.class
+│   │       │               │   │   └── UpdateQuestionRequest.class
+│   │       │               │   └── response
+│   │       │               │       ├── AnswerResponse.class
+│   │       │               │       ├── ErrorResponse.class
+│   │       │               │       ├── LoginResponse.class
+│   │       │               │       ├── QuestionResponse.class
+│   │       │               │       └── SignupResponse.class
+│   │       │               ├── entity
+│   │       │               │   ├── Answer.class
+│   │       │               │   ├── AnswerId.class
+│   │       │               │   ├── Member.class
+│   │       │               │   ├── Question.class
+│   │       │               │   ├── QuestionType.class
+│   │       │               │   └── Role.class
+│   │       │               ├── exception
+│   │       │               │   ├── CustomException.class
+│   │       │               │   ├── ErrorCode.class
+│   │       │               │   ├── enumtype
+│   │       │               │   │   └── ServiceExceptionCode.class
+│   │       │               │   └── handler
+│   │       │               │       └── ExceptionAdvisorController.class
+│   │       │               ├── initDb.class
+│   │       │               ├── repository
+│   │       │               │   ├── AnswerRepository.class
+│   │       │               │   ├── MemberRepository.class
+│   │       │               │   └── QuestionRepository.class
+│   │       │               ├── service
+│   │       │               │   ├── AnswerService.class
+│   │       │               │   ├── MemberService.class
+│   │       │               │   └── QuestionService.class
+│   │       │               └── util
+│   │       │                   ├── EncryptionUtil.class
+│   │       │                   └── JwtTokenUtil.class
+│   │       └── test
+│   │           └── org
+│   │               └── com
+│   │                   └── spectorassignment
+│   │                       ├── SpectorAssignmentApplicationTests.class
+│   │                       └── service
+│   │                           ├── AnswerServiceTest.class
+│   │                           ├── MemberServiceTest.class
+│   │                           └── QuestionServiceTest.class
+```
 
 ### 전체 아키텍처 구조
 - config: security, swagger config를 설정하였습니다.
@@ -38,11 +104,15 @@
 
 ### 실행 방법 및 테스트 과정
    1)  H2 DB는 1.4.200 버전으로 설치
-      - url : jdbc:h2:tcp://localhost/~/test
+
+     - url : jdbc:h2:tcp://localhost/~/test
    2) 최초 실행시
+
      - application.yml -> ddl-auto: create 설정
    3) 환경 변수 설정
-     - JWTSECRET=
+
+      ![스크린샷 2025-04-28 오후 10 22 12](https://github.com/user-attachments/assets/0e058997-b405-43aa-8af7-cb17cd3ad174)
+
         
    4) 테스트 시나리오
       ##### 회원 가입
