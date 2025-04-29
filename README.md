@@ -115,7 +115,7 @@
 
         
    4) 테스트 시나리오
-      ##### 회원 가입
+      ##### 회원 가입(POST /specter/signup)
       
       ###### request
 
@@ -125,7 +125,7 @@
 
       ![스크린샷 2025-04-26 오후 12 38 22](https://github.com/user-attachments/assets/edaa35b0-5be7-466d-a37f-471cacbf5b58)
 
-      ##### 로그인
+      ##### 로그인(POST /specter/login)
 
       ###### request
 
@@ -140,13 +140,13 @@
       
       ![스크린샷 2025-04-26 오후 12 50 06](https://github.com/user-attachments/assets/c1ce4214-bda1-42f0-92de-11c3aa724e6a)
 
-      ##### 질문 조회
+      ##### 질문 조회(GET /mbtis/questions)
 
       ###### response
 
       ![스크린샷 2025-04-26 오후 12 51 08](https://github.com/user-attachments/assets/478628fd-a5f1-411d-ac1c-4d06b3bb578a)
 
-      ##### MBTI 질문 답변
+      ##### MBTI 질문 답변(POST /mbtis/complete)
 
       ###### request
 
@@ -156,7 +156,7 @@
 
       ![스크린샷 2025-04-26 오후 1 01 00](https://github.com/user-attachments/assets/4e0ff01c-86f3-4c5a-b482-7e627d2b932c)
 
-      ##### 회원 MBTI 질문 답변 조회(ROLE이 MANAGER인 회원으로 재로그인)
+      ##### 회원 MBTI 질문 답변 조회(GET /mbtis/{userId}) *ROLE이 MANAGER인 회원으로 재로그인
 
       ##### response
 
