@@ -27,6 +27,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtTokenUtil jwtTokenUtil;
+    private final static String HEADER_AUTHORIZATION = "Authorization";
+    private final static String TOKEN_PREFIX = "Bearer ";
+    private final static String ROLE_PREFIX = "ROLE_";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -40,7 +43,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 // 인증 객체 생성
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        email, null, List.of(new SimpleGrantedAuthority("ROLE_" + role))
+                        email, null, List.of(new SimpleGrantedAuthority(ROLE_PREFIX + role))
                 );
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -75,8 +78,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     private String resolveToken(HttpServletRequest request) {
-        String bearer = request.getHeader("Authorization");
-        if (bearer != null && bearer.startsWith("Bearer ")) {
+        String bearer = request.getHeader(HEADER_AUTHORIZATION);
+        if (bearer != null && bearer.startsWith(TOKEN_PREFIX)) {
             return bearer.substring(7);
         }
         return null;

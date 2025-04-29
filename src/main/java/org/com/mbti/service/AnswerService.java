@@ -44,7 +44,6 @@ public class AnswerService {
 
         List<Answer> alreadyExists = answerRepository.findAllByAnswerIdIn(answerIds);
         if (!CollectionUtils.isEmpty(alreadyExists)) {
-            List<AnswerId> alreadyExistIds = alreadyExists.stream().map(Answer::getAnswerId).toList();
             throw new CustomException(ServiceExceptionCode.ANSWER_ALREADY_EXISTS);
         }
 

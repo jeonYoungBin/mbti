@@ -7,6 +7,8 @@ public record AnswerRequest(
         @NotNull(message = "질문 ID는 필수입니다.")
         Long questionId,
 
-        @NotBlank(message = "응답은 비워둘 수 없습니다.")
+
+        @NotBlank(message = "빈값은 입력할수 없습니다.")
+        @NotNull(message = "응답은 필수 입니다.")
         String answer
 ) { }
