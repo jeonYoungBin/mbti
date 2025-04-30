@@ -1,6 +1,7 @@
 package org.com.mbti.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.com.mbti.domain.request.LoginRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/specter")
+@Tag(name = "[회원 가입/로그인]")
 public class MemberController {
     private final MemberService memberService;
 
